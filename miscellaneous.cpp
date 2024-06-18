@@ -174,52 +174,42 @@ long long countInversions(vector<long long> &nums) {
 
 
 //                              KMP
-bool knuthMorrisPrattAlgorithm(string str, string substr)
-{
+bool knuthMorrisPrattAlgorithm(string str, string substr){
     // building pattern
     int l = substr.size();
     vector<int> pattern(l, -1);
     int j = 0, i = 1;
-    while (i < l)
-    {
-        if (substr[i] == substr[j])
-        {
+    while (i < l){
+        if (substr[i] == substr[j]){
             pattern[i] = j;
             i++;
             j++;
         }
-        else if (j > 0)
-        {
+        else if (j > 0){
             j = pattern[j - 1] + 1;
         }
-        else
-        {
+        else{
             i++;
         }
     }
 
     // pattern
-    for (auto k : pattern)
-    {
+    for (auto k : pattern){
         cout << k << " ";
     }
 
     // string matching
     i = 0;
     j = 0;
-    while (j != l && i < str.size())
-    {
-        if (str[i] == substr[j])
-        {
+    while (j != l && i < str.size()){
+        if (str[i] == substr[j]){
             i++;
             j++;
         }
-        else if (j > 0)
-        {
+        else if (j > 0){
             j = pattern[j - 1] + 1;
         }
-        else
-        {
+        else{
             i++;
         }
     }

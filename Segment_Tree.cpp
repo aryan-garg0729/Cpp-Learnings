@@ -43,11 +43,7 @@ using namespace std;
 // template <typename T>
 class SegmentTree{
     vector<long long>seg,lazy;
-    public:
-    SegmentTree(int n,int val){
-        seg.resize(4*n,val);
-        lazy.resize(4*n,val);
-    }
+    int n;
     void build(vector<int>&nums,int ind,int low, int high){
         if(low==high){
             seg[ind] = nums[low];
@@ -82,7 +78,21 @@ class SegmentTree{
         long long right = query(2*ind+2,mid+1,high,l,r);
         return left+right;
     }
-    // increase a range by val
+
+    void update(int ind,int low,int high,int i,int val){
+        if(low==high){
+            seg[ind] = val;
+            return;
+        }
+
+        int mid = (low+high)/2;
+        
+        if(mid>=i)update(2*ind+1,low,mid,i,val);
+        else update(2*ind+2,mid+1,high,i,val);
+
+        seg[ind] = seg[2*ind+1]+seg[2*ind+2];
+    }
+
     void rangeUpdate(int ind,int low,int high,int l,int r,int val){
         // update previous remaining updates
         // and propagate downwards
@@ -118,20 +128,29 @@ class SegmentTree{
         rangeUpdate(2*ind+2,mid+1,high,l,r,val);
         seg[ind] = seg[2*ind+1]+seg[2*ind+2];
     }
-    // point update(replace value at index i with val)
-    void update(int ind,int low,int high,int i,int val){
-        if(low==high){
-            seg[ind] = val;
-            return;
-        }
-
-        int mid = (low+high)/2;
-        
-        if(mid>=i)update(2*ind+1,low,mid,i,val);
-        else update(2*ind+2,mid+1,high,i,val);
-
-        seg[ind] = seg[2*ind+1]+seg[2*ind+2];
+    public:
+    SegmentTree(vector<int>&nums,int val){
+        n = nums.size();
+        seg.resize(4*n,val);
+        lazy.resize(4*n,val);
+        build(nums,0,0,n-1);
     }
+    
+    // query range l to r
+    long long query(int l,int r){
+        return query(0,0,n-1,l,r);
+    }
+
+    // point update(replace value at index i with val)
+    void update(int ind,int val){
+        update(0,0,n-1,ind,val);
+    }
+
+    // increase a range by val
+    void rangeUpdate(int l,int r,int val){
+        rangeUpdate(0,0,n-1,l,r,val);
+    }
+    
 };
 
 int main(){
@@ -143,18 +162,17 @@ int main(){
     for(int i = 0;i<n;i++){
         cin>>nums[i];
     }
-    SegmentTree seg(n,0);
-    seg.build(nums,0,0,n-1);
+    SegmentTree seg(nums,0);
     for(int i = 0;i<q;i++){
         int type,l,r;
         cin>>type>>l>>r;
         l--;
         if(type==1){
-            seg.update(0,0,n-1,l,r);
+            seg.update(l,r);
         }
         else {
             r--;
-            cout<<seg.query(0,0,n-1,l,r)<<endl;
+            cout<<seg.query(l,r)<<endl;
         }
     }
     return 0;
