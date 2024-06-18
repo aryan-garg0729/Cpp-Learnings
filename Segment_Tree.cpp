@@ -1,46 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
-// vector<long long>seg;
-// void build(vector<int>&nums,int ind,int low,int high){
-//     if(low==high){
-//         seg[ind] = nums[low];
-//         return;
-//     }
-//     int mid = (low+high)/2;
-//     build(nums,2*ind+1,low,mid);
-//     build(nums,2*ind+2,mid+1,high);
-//     seg[ind] = (seg[2*ind+1]^seg[2*ind+2]);
-// }
-// long long query(int ind,int low,int high,int l,int r){
-//     // no overlap
-//     if(high<l || low>r)return 0;
 
-//     // complete overlap
-//     if(low>=l && high<=r)return seg[ind];
-
-//     // partial overlap
-//     int mid = (low+high)/2;
-//     long long left = query(2*ind+1,low,mid,l,r);
-//     long long right = query(2*ind+2,mid+1,high,l,r);
-//     return (left^right);
-// }
-// void update(int ind,int low,int high,int i,int val){
-//     if(low==high){
-//         seg[ind] = val;
-//         return;
-//     }
-
-//     int mid = (low+high)/2;
-
-//     if(mid>=i) update(2*ind+1,low,mid,i,val);
-//     else update(2*ind+2,mid+1,high,i,val);
-
-//     seg[ind] = (seg[2*ind+1]^seg[2*ind+2]);
-// }
-
-
-
-// template <typename T>
 class SegmentTree{
     vector<long long>seg,lazy;
     int n;
