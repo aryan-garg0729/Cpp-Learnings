@@ -3,11 +3,12 @@
 #include<iostream>
 using namespace std;
 #include "classes.h"
-
+#include <typeinfo>
 int main(){
         // **********fraction**********
   {
     Fraction f1(10,2);
+    cout<<typeid(f1).name()<<endl;
     Fraction f2(15,4);
     Fraction f3(7,2);
     Fraction f4(15,14);

@@ -123,18 +123,10 @@ int main(){
         cin>>nums[i];
     }
     SegmentTree seg(nums,0);
-    for(int i = 0;i<q;i++){
-        int type,l,r;
-        cin>>type>>l>>r;
-        l--;
-        if(type==1){
-            seg.update(l,r);
-        }
-        else {
-            r--;
-            cout<<seg.query(l,r)<<endl;
-        }
-    }
+    seg.rangeUpdate(0,3,-1);
+    seg.rangeUpdate(0,n-1,-1);
+
+    cout<<seg.query(0,n-1);
     return 0;
 }
 
