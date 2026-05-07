@@ -2,7 +2,6 @@
 
 ## Sparse Table [(CP ALGO)](https://cp-algorithms.web.app/data_structures/sparse-table.html)
 - [Range min query](https://cses.fi/problemset/task/1647)
-- [Company queries-1](https://cses.fi/problemset/task/1687/) $\rightarrow$ [Company queries-2 (LCA using sparse table)](https://cses.fi/problemset/task/1688)
 
 ## Disjoint Set Union [(CP ALGO)](https://cp-algorithms.web.app/data_structures/disjoint_set_union.html)
 - [Road Reparation](https://cses.fi/problemset/task/1675/)
@@ -55,7 +54,6 @@
 - [Round Trip II (Directed Cycle)](https://cses.fi/problemset/task/1678)
 
 ### Minimum Spanning Tree (MST)
-- [Road Reparation (Kruskal)](https://cses.fi/problemset/task/1675)
 - [Road Construction (DSU / Dynamic Connectivity)](https://cses.fi/problemset/task/1676)
 
 ### Functional Graph
