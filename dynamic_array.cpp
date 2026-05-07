@@ -10,7 +10,7 @@ class DynamicArray{
         capacity = 5;
         data = new int[capacity];
     }
-    DynamicArray(DynamicArray const & d1){   //deep copying constructor
+    DynamicArray(DynamicArray const & d1){   //deep copying constructor, const->no updation+allow const and normal both to be passed, & to avoid infinite recursion of copy constructor
         capacity = d1.capacity;
         index = d1.index;
         // data = d1.data;  // shallow copy
@@ -46,7 +46,7 @@ class DynamicArray{
         }
     }
 
-    int get(int i)const{
+    int get(int i)const{   //trailing const only applies to member fns(basically to 'this' pointer present only in class) saying it will not modify any member variable unless set mutable(eg mutable int a) and also not modify any non mutable variable, also not call any non constant function
         if(i<index){
             return data[i];
         }
